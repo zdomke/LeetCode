@@ -1,21 +1,16 @@
-class Solution{
+class Solution{			// 6ms
 	public int maxWidthRamp(int[] nums){
-		int[] ramps = new int[nums.length];
 		Stack<Integer> st = new Stack<>();
-
-		for(int i = nums.length - 1; i >= 0; i--){
-			while(!st.empty() && (nums[st.peek()] < nums[i]))
-				st.pop();
-			ramps[i] = st.empty() ? 0 : (st.peek() - i + ramps[st.peek()]);
-			st.push(i);
+		int ramp = 0;
+		int len = nums.length;
+		for(int i = 0; i < len; i++){
+			if(st.empty() || (nums[st.peek()] > nums[i]))
+				st.add(i);
 		}
-		Arrays.sort(ramps);
-		return ramps[ramps.length - 1];
+		for(int i = len - 1; i > ramp; i--){
+			while(!st.empty() && (nums[st.peek()] <= nums[i]))
+				ramp = Math.max(ramp, i - st.pop());
+		}
+		return ramp;
 	}
 }
-
-
-/*
-Does not work properly.
-It stops iterating through the stack at the first event of a larger value in nums.
-*/
