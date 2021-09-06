@@ -1,15 +1,40 @@
-class Solution{		// 20ms
-	private ListNode curr;
+class Solution{		// 5ms
 	public boolean isPalindrome(ListNode head){
-		curr = head;
-		return helper(head);
+		ListNode slow = head;
+		ListNode fast = head;
+		while((fast != null) && (fast.next != null)){
+			slow = slow.next;
+			fast = fast.next.next;
+		}
+		if(fast != null) slow = slow.next;
+
+		slow = reverse(slow);
+		fast = head;
+
+		while(slow != null){
+			if(slow.val != fast.val) return false;
+			slow = slow.next;
+			fast = fast.next;
+		}
+		return true;
 	}
 
-	private boolean helper(ListNode node){
-		if(node == null) return true;
-
-		boolean sub = helper(node.next) && (node.val == curr.val);
-		curr = curr.next;
-		return sub;
+	private ListNode reverse(ListNode head){
+		ListNode prev = null;
+		while(head != null){
+			ListNode next = head.next;
+			head.next = prev;
+			prev = head;
+			head = next;
+		}
+		return prev;
 	}
 }
+
+/*
+Pros:
+	Runs very quickly
+Cons:
+	Uses a lot of space
+	Modifies original LinkedList
+*/
