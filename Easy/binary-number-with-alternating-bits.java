@@ -1,13 +1,13 @@
-class Solution{			// 9ms
+class Solution{			// 0ms
 	public boolean hasAlternatingBits(int n){
-		String run = "";
+		int lastBit = n % 2;
+		int currBit;
+		n /= 2;
 		while(n > 0){
-			run += (n % 2);
+			currBit = n % 2;
 			n /= 2;
-		}
-		for(int i = 1; i < run.length(); i++){
-			if(run.charAt(i) == run.charAt(i - 1))
-				return false;
+			if(currBit == lastBit) return false;
+			lastBit = currBit;
 		}
 		return true;
 	}
