@@ -1,14 +1,16 @@
-class Solution{		// 23ms
+class Solution{		// 22ms
 	public boolean isPalindrom(ListNode head){
-		ArrayList arr = new ArrayList<Integer>();
-		while(head != null){
-			arr.add(head.val);
-			head = head.next;
-		}
-		int len = arr.size();
-		for(int i = 0; i < (len / 2); i++){
-			if(arr.get(i) != (arr.get(len - 1 - i)))
+		Stack<Integer> st = new Stack<>();
+		ListNode curr = head;
+		while(curr != null){
+			st.push(curr.val);
+            curr = curr.next;
+        }
+		curr = head;
+		while(!st.empty()){
+			if(st.pop() != curr.val)
 				return false;
+			curr = curr.next;
 		}
 		return true;
 	}
