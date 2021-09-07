@@ -1,21 +1,15 @@
-import java.lang.Math;
-
-class Solution{		// 24ms
+class Solution{		// 8ms
 	public List<List<Integer>> combine(int n, int k){
-		double len = Math.pow(2, n);
-		List<List<Integer>> ret = new List<>();
-		
-		for(int i = 1; i <= len; i++){
-			if(Integer.bitCount(i) != k) continue;
-			String bits = Integer.toBinaryString(i);
-			List<Integer> temp = new ArrayList<>();
-			for(int j = 0; j < n; j++){
-				if(bits.charAt(bits.length() - j) == '1'){
-					temp.add(j + 1);
-				}
-			}
-			ret.add(temp);
-		}
+		List<List<Integer>> ret = new ArrayList<>();
+
+		if(n < k || k == 0) return ret;
+
+		ret = combine(n - 1, k - 1);
+		if(ret.isEmpty()) ret.add(new ArrayList<Integer>());
+		for(List<Integer> list : ret) list.add(n);
+
+		ret.addAll(combine(n - 1. k));
+
 		return ret;
 	}
 }
