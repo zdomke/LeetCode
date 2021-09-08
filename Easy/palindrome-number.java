@@ -1,15 +1,12 @@
 class Solution {
     public boolean isPalindrome(int x) {
         if(x < 0) return false;
-        
-        int y = 0;
-        int copy = x;
-        
-        while (copy > 0){
-            y = (y * 10) + (copy % 10);
-            copy /= 10;
+
+        char[] arr = String.valueOf(x).toCharArray();
+
+        for(int i = 0; i < arr.length / 2; i++){
+            if(arr[i] != arr[arr.length - 1 - i]) return false;
         }
-        
-        return x == y;
+        return true;
     }
 }
