@@ -1,12 +1,14 @@
 class Solution {
     public boolean isPalindrome(int x) {
-        if(x < 0) return false;
-
-        char[] arr = String.valueOf(x).toCharArray();
-
-        for(int i = 0; i < arr.length / 2; i++){
-            if(arr[i] != arr[arr.length - 1 - i]) return false;
+        if(x < 0 || (x != 0 && x % 10 == 0)) return false;
+        
+        int y = 0;
+        
+        while (x > y){
+            y = (y * 10) + (x % 10);
+            x /= 10;
         }
-        return true;
+        
+        return (x == y || x == y / 10);
     }
 }
