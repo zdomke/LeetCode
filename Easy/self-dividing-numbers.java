@@ -1,4 +1,4 @@
-class Solution{		// 5ms
+class Solution{		// 2ms
     public List<Integer> selfDividingNumbers(int left, int right){
     	boolean[] digits = new boolean[10];
     	List<Integer> ret = new ArrayList<>();
@@ -19,11 +19,9 @@ class Solution{		// 5ms
 	    				break;
 	    			}
 	    		}
-	    	} else {
-	    		bool = false;
+	    		if(bool)
+		    		ret.add(i);
 	    	}
-    		if(bool)
-	    		ret.add(i);
     	}
     	return ret;
     }
