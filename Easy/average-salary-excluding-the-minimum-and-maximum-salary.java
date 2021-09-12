@@ -1,11 +1,13 @@
 class Solution {        // 0ms
     public double average(int[] salary) {
-        double[] run = {0, salary[0], salary[0]};
-        for(int i = 0; i < salary.length; i++){
-            run[0] += salary[i];
-            run[1] = Math.min(run[1], salary[i]);
-            run[2] = Math.max(run[2], salary[i]);
+        double sum = 0;
+        int min = salary[0];
+        int max = salary[0];
+        for(int x : salary){
+            sum += x;
+            min = Math.min(x, min);
+            max = Math.max(x, max);
         }
-        return (run[0] - run[1] - run[2]) / (salary.length - 2);
+        return (sum - min - max) / (salary.length - 2);
     }
 }
