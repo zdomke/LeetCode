@@ -1,10 +1,9 @@
-class Solution:     # 37ms
+class Solution:     # 32ms
     def average(self, salary: List[int]) -> float:
         runSum = 0
-        runMax = salary[0]
-        runMin = runMax
+        extreme = [salary[0]] * 2
         for i in range(len(salary)):
             runSum += salary[i]
-            runMax = max(salary[i], runMax)
-            runMin = min(salary[i], runMin)
-        return (runSum - runMax - runMin) / (len(salary) - 2)
+            extreme[0] = max(salary[i], extreme[0])
+            extreme[1] = min(salary[i], extreme[1])
+        return (runSum - extreme[0] - extreme[1]) / (len(salary) - 2)
