@@ -1,21 +1,15 @@
-class Solution {        // 8ms
+class Solution {        // 17ms
     public String toGoatLatin(String sentence) {
         String ret = "";
-        String[] arr = sentence.split(" ");
+        Set<Character> vowel = new HashSet<>(Arrays.asList('a', 'e', 'i', 'o', 'u', 'A', 'E', 'I', 'O', 'U'));
         
-        for(int i = 0; i < arr.length; i++){
-            if(!"aeiouAEIOU".contains("" + arr[i].charAt(0))){
-                ret += arr[i].substring(1);
-                ret += arr[i].charAt(0);
-            } else {
-                ret += arr[i];
-            }
-            ret += "maa";
-            for(int j = 0; j < i; j++){
+        int j = 0, i = 0;
+        for(String w : sentence.split(" ")){
+            ret += ' ' + (vowel.contains(w.charAt(0)) ? w : w.substring(1) + w.charAt(0)) + "ma";
+            for(j = 0, i++; j < i; j++){
                 ret += 'a';
             }
-            ret += ' ';
         }
-        return ret.substring(0, ret.length() - 1);
+        return ret.substring(1);
     }
 }
