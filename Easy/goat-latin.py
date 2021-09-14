@@ -1,15 +1,12 @@
-class Solution:     # 32ms
+class Solution:     # 36ms
     def toGoatLatin(self, sentence: str) -> str:
         sentence = sentence.split()
-        ret = ""
         for i in range(len(sentence)):
             first = sentence[i][0]
             if first.lower() not in 'aeiou':
                 sentence[i] = sentence[i][1:] + first
             sentence[i] += 'maa'
-            ret += sentence[i]
             for _ in range(i):
-                ret += 'a'
-            ret += ' '
+                sentence[i] += 'a'
                 
-        return ret[:-1]
+        return " ".join(sentence)
