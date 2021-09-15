@@ -10,8 +10,5 @@ class Solution:     # 76ms
         small = min(p.val, q.val)
         big = max(p.val, q.val)
         while small > root.val or big < root.val:
-            if small > root.val:
-                root = root.right
-            else:
-                root = root.left
+            root = root.right if small > root.val else root.left
         return root
