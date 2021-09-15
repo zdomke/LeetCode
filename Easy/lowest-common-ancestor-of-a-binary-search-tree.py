@@ -5,7 +5,7 @@
 #         self.left = None
 #         self.right = None
 
-class Solution:
+class Solution:     # 123ms
     def lowestCommonAncestor(self, root: 'TreeNode', p: 'TreeNode', q: 'TreeNode') -> 'TreeNode':
         small = min(p.val, q.val)
         big = max(p.val, q.val)
