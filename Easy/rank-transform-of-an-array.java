@@ -1,16 +1,14 @@
-class Solution{			// 75ms
+class Solution{			// 24ms
 	public int[] arrayRankTransform(int[] arr){
 		HashMap<Integer, Integer> hm = new HashMap<>();
-		int[] copy = arr.clone();
+		int[] a = arr.clone();
 		Arrays.sort(copy);
-		for(int x : copy){
-			if(!hm.containsKey(x)){
-				hm.put(x, hm.size() + 1);
-			}
+		for(int x : a){
+			hm.putIfAbsent(x, hm.size() + 1);
 		}
 		for(int i = 0; i < arr.length; i++){
-			copy[i] = hm.get(arr[i]);
+			a[i] = hm.get(arr[i]);
 		}
-		return copy;
+		return a;
 	}
 }
