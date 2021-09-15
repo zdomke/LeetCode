@@ -1,4 +1,4 @@
-class Solution {        // 2ms
+class Solution {        // 1ms
     public String destCity(List<List<String>> paths) {
         Set<String> city = new HashSet<>();
         
