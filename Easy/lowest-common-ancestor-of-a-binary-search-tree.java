@@ -12,13 +12,16 @@ class Solution {        // 6ms
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         int small = Math.min(p.val, q.val);
         int big = Math.max(p.val, q.val);
+        TreeNode ret = root;
         
-        if(small <= root.val && big >= root.val){
-            return root;
-        } else if(small > root.val){
-            return lowestCommonAncestor(root.right, p, q);
-        } else {
-            return lowestCommonAncestor(root.left, p, q);
+        while(small > root.val || big < root.val){
+            if(small > root.val){
+                root = root.right;
+            } else {
+                root = root.left;
+            }
+            ret = root;
         }
+        return ret;
     }
 }
