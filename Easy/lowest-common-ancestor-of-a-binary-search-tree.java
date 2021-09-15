@@ -8,20 +8,14 @@
  * }
  */
 
-class Solution {        // 6ms
+class Solution {        // 3ms
     public TreeNode lowestCommonAncestor(TreeNode root, TreeNode p, TreeNode q) {
         int small = Math.min(p.val, q.val);
         int big = Math.max(p.val, q.val);
-        TreeNode ret = root;
         
         while(small > root.val || big < root.val){
-            if(small > root.val){
-                root = root.right;
-            } else {
-                root = root.left;
-            }
-            ret = root;
+            root = small > root.val ? root.right : root.left;
         }
-        return ret;
+        return root;
     }
 }
