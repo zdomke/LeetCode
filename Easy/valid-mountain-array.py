@@ -1,11 +1,11 @@
-class Solution:     # 317ms
+class Solution:     # 196ms
     def validMountainArray(self, arr: List[int]) -> bool:
-        if len(arr) < 3 or arr[0] > arr[1]:
-            return False 
-        
-        i = 1
-        while i < len(arr) - 1 and arr[i - 1] < arr[i]:
+        ln = len(arr)
+        i = 0
+        while(i < ln - 1 and arr[i] < arr[i + 1]):
             i += 1
-        while i < len(arr) and arr[i - 1] > arr[i]:
+        if(i == 0 or i == ln - 1):
+            return False
+        while(i < ln - 1 and arr[i] > arr[i + 1]):
             i += 1
-        return i == len(arr)
+        return i == ln - 1
