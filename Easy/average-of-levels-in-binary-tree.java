@@ -13,7 +13,7 @@
  *     }
  * }
  */
-class Solution {
+class Solution {        // 4ms
     public List<Double> averageOfLevels(TreeNode root) {
         List<Double> ret = new ArrayList<>();
         Queue<TreeNode> q = new LinkedList<>();
