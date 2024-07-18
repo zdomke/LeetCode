@@ -17,6 +17,18 @@ class Solution(object):
                 return s0[:-1]
         return s0
 
+    def secondSolution(self, strs: list):
+        ret = ""
+        strs = sorted(strs)
+        s0 = strs[0]
+        s1 = strs[-1]
+
+        for i in range(len(s0)):
+            if s0[i] != s1[i]:
+                return ret
+            ret += s0[i]
+        return ret
+
 
 if __name__ == "__main__":
     sol = Solution()
@@ -28,3 +40,4 @@ if __name__ == "__main__":
              ["abab", "aba", ""]]
     for l in lists:
         print(f"{l} --> {sol.longestCommonPrefix(l)}")
+        print(f"{l} --> {sol.secondSolution(l)}")
