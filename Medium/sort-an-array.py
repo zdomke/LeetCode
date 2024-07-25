@@ -4,25 +4,36 @@ class Solution(object):
         :type nums: List[int]
         :rtype: List[int]
         """
-        if len(nums) == 1:
-            return nums
+        def merge(arr):
+            if len(arr) == 1:
+                return
 
-        ind = len(nums) // 2
-        left = self.sortArray(nums[:ind])
-        right = self.sortArray(nums[ind:])
-        return self.combine_arrs(left, right)
+            mid = len(arr) // 2
+            left = arr[:mid]
+            right = arr[mid:]
 
-    def combine_arrs(self, l1, l2):
-        ret = []
-        while True:
-            ret.append(l1.pop(0) if l1[0] <= l2[0] else l2.pop(0))
-            if not l1:
-                ret += l2
-                break
-            elif not l2:
-                ret += l1
-                break
-        return ret
+            merge(left)
+            merge(right)
+
+            ind_l = ind_r = ind_a = 0
+
+            while ind_l < len(left) and ind_r < len(right):
+                if left[ind_l] < right[ind_r]:
+                    arr[ind_a] = left[ind_l]
+                    ind_l += 1
+                else:
+                    arr[ind_a] = right[ind_r]
+                    ind_r += 1
+                ind_a += 1
+
+            if ind_l < len(left):
+                arr[ind_a:] = left[ind_l:]
+
+            if ind_r < len(right):
+                arr[ind_a:] = right[ind_r:]
+
+        merge(nums)
+        return nums
 
 
 if __name__ == "__main__":
