@@ -4,10 +4,10 @@ class Solution(object):
         :type s: str
         :rtype: str
         """
-        o_count = s.count('1')
-        z_count = len(s) - o_count
-
-        return ('1' * (o_count - 1)) + ('0' * z_count) + '1'
+        count0 = s.count('0')
+        count1 = s.count('1') - 1
+        ret = '1' * count1 + '0' * count0 + '1'
+        return ret
 
     def diff_solution(self, s: str):
         s = sorted(s)
