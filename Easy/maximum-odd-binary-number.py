@@ -9,6 +9,12 @@ class Solution(object):
 
         return ('1' * (o_count - 1)) + ('0' * z_count) + '1'
 
+    def diff_solution(self, s: str):
+        s = sorted(s)
+        o_count = s.count('1') - 1
+        s = s[-o_count:] + s[:-o_count]
+        return ''.join(s)
+
 
 if __name__ == "__main__":
     sol = Solution()
