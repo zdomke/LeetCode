@@ -4,17 +4,14 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        a_count = s.count('a')
+        ret = 0
         b_count = 0
 
-        ret = a_count
         for c in s:
-            if c == 'b':
-                b_count += 1
+            if c == 'a':
+                ret = min(b_count, ret + 1)
             else:
-                a_count -= 1
-
-            ret = min(ret, a_count + b_count)
+                b_count += 1
 
         return ret
 
