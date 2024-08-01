@@ -4,15 +4,22 @@ class Solution(object):
         :type s: str
         :rtype: int
         """
-        if not s:
-            return 0
-        elif len(s) == 1:
-            return 1
-        elif s[0] != s[-1]:
-            return len(s)
+        char = s[0]
+        left = 0
+        right = len(s) - 1
 
-        s = s.lstrip(s[0]).rstrip(s[0])
-        return self.minimumLength(s)
+        while left < right:
+            if s[left] != s[right]:
+                break
+
+            while left <= right and s[left] == char:
+                left += 1
+            while left <= right and s[right] == char:
+                right -= 1
+
+            char = s[right]
+
+        return right - left + 1
 
 
 if __name__ == "__main__":
