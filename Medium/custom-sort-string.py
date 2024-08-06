@@ -13,6 +13,11 @@ class Solution(object):
 
         return "".join(sorted(s, key=sort))
 
+    def second_sol(self, order, s):
+        key = {order[i]: i for i in range(len(order))}
+
+        return "".join(sorted(s, key=lambda c: key.get(c, -1)))
+
 
 if __name__ == "__main__":
     sol = Solution()
